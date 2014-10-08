@@ -1,0 +1,91 @@
+<!doctype html>
+<html ng-app="myApp">
+  <script src="bower_components/angular/angular.min.js"></script>
+  <style>
+  body {
+      background-color: beige;
+      margin: 0;
+      padding: 0;
+  }
+  .main {
+    text-align: center;
+  }
+  .search-bar {
+    font-size: 40px;
+  }  
+  .result-box {
+      border: 1px solid black;
+      border-radius: 5px;
+      color: maroon;
+      margin: 10px;
+      padding: 10px;
+      display: inline-block;
+      text-align: center;
+      font-family: Copperplate, sans-serif;
+      min-width: 100px;
+      width: 200px;
+  } 
+
+  .search-bar.ng-enter {
+    transition: height 1s;
+    height: 0px;
+    overflow: hidden;
+  }
+
+  .search-bar.ng-enter-active {
+    height: 1000px;
+  }
+
+  .result-name {
+      font-size: 25px;       
+  }
+
+  .result-value {
+      font-size: 30px;
+      color: black;      
+  }
+</style>
+  <script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+
+    myApp.controller('myController', function ($scope) {
+      $scope.queries = [
+        //users
+        {name: "new users", query: "COUNT(*) FROM USERS WHERE CREATED_AT > 20.11.14", result: "510"},
+        {name: "total number of users", query: "COUNT(*) FROM USERS", result: "3100000"},
+        {name: "users blocked", query: "COUNT(*) FROM USERS where status='blocked'", result: "157000"},
+        {name: "top buyer", result: "prplastic"},
+        {name: "top seller", result: "crorkservice"},
+        {name: "FTBs", result: "128"},
+        //orders
+        {name: "Orders made", result: "2075"},
+        {name: "Orders cancelled", result: "104"},
+        {name: "Orders delivered", result: "1700"},
+        {name: "AOV", result: 156},
+        //gigs
+        {name: "Gigs Created", result: 220},
+
+        //purchases
+        {name: "Purchases via Paypal Express Checkout", result: 180},
+        {name: "Total revenue via Paypal Express Checkout", result: "$30452"},
+        {name: "Purchases via Billing Agreement", result: 106},
+        {name: "Total revenue via Paypal Billing Agreement", result: "$24600"},
+        {name: "Purchases via Bitcoin", result: 185},
+        {name: "Total revenue via Bitcoin", result: "$24600"},
+        {name: "Purchases via Cart", result: 450},
+        {name: "Total revenue via Cart", result: "$50780"},
+        {name: "Average # of seconds between cart purchases", result: "46"},
+      ];
+    });
+  </script>
+
+  <div class="main" ng-controller="myController">    
+    <input class="search-bar" type="text" ng-model="search">  
+      <div>
+        <span ng-animate="'animate'" class="result-box" ng-repeat="q in queries | filter: search">
+          <div class="result-name">{{q.name}}</div>        
+          <span class="result-value">{{q.result}}</span>                
+        </span>        
+      <div>
+  </div>
+</html>
