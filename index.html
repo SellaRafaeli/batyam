@@ -82,7 +82,7 @@
   <div class="main" ng-controller="myController">    
     <input class="search-bar" type="text" ng-model="search">  
       <div>
-        <span ng-animate="'animate'" class="result-box" ng-repeat="q in queries | filter: search">
+        <span class="result-box" ng-repeat="q in queries | filter: search">
           <div class="result-name">{{q.name}}</div>        
           <span class="result-value">{{q.result}}</span>                
         </span>        
