@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="myApp">
   <script src="bower_components/angular/angular.min.js"></script>
+  <link rel="stylesheet" href="bower_components/pure-min/index.css">  <!-- http://purecss.io/buttons/ -->
   <style>
   body {
       background-color: beige;
@@ -12,6 +13,7 @@
   }
   .search-bar {
     font-size: 40px;
+    margin: 10px;
   }  
   .result-box {
       border: 1px solid black;
@@ -24,16 +26,14 @@
       font-family: Copperplate, sans-serif;
       min-width: 100px;
       width: 200px;
+      text-decoration: none;
   } 
-
-  .search-bar.ng-enter {
-    transition: height 1s;
-    height: 0px;
-    overflow: hidden;
+  .fullWidth {
+    width: 1000px;
   }
-
-  .search-bar.ng-enter-active {
-    height: 1000px;
+  .result-box:hover {    
+    border: 1px solid red;
+    cursor: pointer;    
   }
 
   .result-name {
@@ -44,48 +44,83 @@
       font-size: 30px;
       color: black;      
   }
+
+  .field {
+    width: 700px;
+    margin: 10px;
+  }
+
 </style>
+  <script type="text/javascript">
+    fakeQuery = "select count(*) from payment_tokens wher status='success' && payment_method='paypal_express_payment' && created_at > '2014-07-11' && buyer_id NOT NULL"     
+    mockQueries = [
+              
+        //users
+        // {name: "new users", id: 1, query: "COUNT(*) FROM USERS WHERE CREATED_AT > 20.11.14", result: "510"},
+        // {name: "total number of users", id: 2, query: "COUNT(*) FROM USERS", result: "3100000"},
+        // {name: "users blocked", id: 3, query: "COUNT(*) FROM USERS where status='blocked'", result: "157000"},
+        // {name: "top buyer", result: "prplastic"},
+        // {name: "top seller", result: "crorkservice"},
+        // {name: "FTBs", result: "128"},
+        // //orders
+        // {name: "Orders made", result: "2075"},
+        // {name: "Orders cancelled", result: "104"},
+        // {name: "Orders delivered", result: "1700"},
+        // {name: "AOV", result: 156},
+        // //gigs
+        // {name: "Gigs Created", result: 220},
+
+        //purchases
+        {name: "Purchases via Paypal Express Checkout", result: 180, id:1, query: fakeQuery},
+        {name: "Total revenue via Paypal Express Checkout", result: "$30452", id:2, query: fakeQuery},
+        {name: "Purchases via Billing Agreement", result: 106, id:3, query: fakeQuery},
+        {name: "Total revenue via Paypal Billing Agreement", result: "$24600", id:4, query: fakeQuery},
+        {name: "Purchases via Bitcoin", result: 185, id:5},
+        {name: "Total revenue via Bitcoin", result: "$24600", id:6},
+        {name: "Purchases via Cart", result: 450, id:7},
+        {name: "Total revenue via Cart", result: "$50780", id:8},
+        {name: "Average # of seconds between cart purchases", result: "46", id:9},        
+      ];
+    
+  </script>
+
   <script type="text/javascript">
     var myApp = angular.module('myApp', []);
 
-    myApp.controller('myController', function ($scope) {
-      $scope.queries = [
-        //users
-        {name: "new users", query: "COUNT(*) FROM USERS WHERE CREATED_AT > 20.11.14", result: "510"},
-        {name: "total number of users", query: "COUNT(*) FROM USERS", result: "3100000"},
-        {name: "users blocked", query: "COUNT(*) FROM USERS where status='blocked'", result: "157000"},
-        {name: "top buyer", result: "prplastic"},
-        {name: "top seller", result: "crorkservice"},
-        {name: "FTBs", result: "128"},
-        //orders
-        {name: "Orders made", result: "2075"},
-        {name: "Orders cancelled", result: "104"},
-        {name: "Orders delivered", result: "1700"},
-        {name: "AOV", result: 156},
-        //gigs
-        {name: "Gigs Created", result: 220},
-
-        //purchases
-        {name: "Purchases via Paypal Express Checkout", result: 180},
-        {name: "Total revenue via Paypal Express Checkout", result: "$30452"},
-        {name: "Purchases via Billing Agreement", result: 106},
-        {name: "Total revenue via Paypal Billing Agreement", result: "$24600"},
-        {name: "Purchases via Bitcoin", result: 185},
-        {name: "Total revenue via Bitcoin", result: "$24600"},
-        {name: "Purchases via Cart", result: 450},
-        {name: "Total revenue via Cart", result: "$50780"},
-        {name: "Average # of seconds between cart purchases", result: "46"},
-      ];
-    });
+    myApp.controller('queriesController', function ($scope, $http) {          
+      g1 = $scope;
+      $scope.queries = mockQueries; 
+      $scope.unexpandQ = function(q,e){ $scope.queryExpanded = false; q.expanded = false; e.stopPropagation(); };
+      $scope.updateQ = function(q) { 
+        $http.post('/updateQuery',{q:q}).then(function(){debugger}).catch(function(){alert('Failed to update');});        
+      };
+    }); 
+    
   </script>
 
-  <div class="main" ng-controller="myController">    
-    <input class="search-bar" type="text" ng-model="search">  
+  <div class="main" ng-controller="queriesController">    
+    <input class="search-bar" type="text" ng-model="search" ng-show=!queryExpanded>  
       <div>
-        <span class="result-box" ng-repeat="q in queries | filter: search">
+        <a ng-click="$parent.queryExpanded = true; q.expanded = true" href="#" class="result-box" ng-repeat="q in queries | filter: search " ng-show="q.expanded || !$parent.queryExpanded" ng-class="{fullWidth: q.expanded}">
           <div class="result-name">{{q.name}}</div>        
           <span class="result-value">{{q.result}}</span>                
-        </span>        
-      <div>
+          <div ng-show="q.expanded">
+            <hr/>
+            <table>            
+            <tr>
+              <td>Query</td>
+              <td><input class='field' ng-model=q.query ng-show=q.expanded></input></td>
+              <td><button class="pure-button" ng-click="updateQ(q)">Update!</button><td>
+            </tr>
+            <tr>
+              <td>Query Object Dump</td>
+              <td>{{q}}</td>
+            </tr>           
+            </table>                       
+            <br/>            
+            <button class="pure-button" ng-click="unexpandQ(q, $event)">Done</button>
+          </div>          
+        </a>        
+      <div>  
   </div>
 </html>
