@@ -1,1 +1,1 @@
-BATYAM is a light-weight mini-dashboard.
+BATYAM - the simpler collaborative dashboard
