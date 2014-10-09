@@ -66,10 +66,7 @@
           if (cb) { cb(res.data) } else { alert ('OK') }
         }).catch(function(){alert('Failed');
         });
-      };        
-
-      g1 = $scope;
-      //$scope.queries = mockQueries; 
+      };         
 
       $http.get('/queries/all').then(function(d){$scope.queries = d.data; console.log(d.data);})
       $scope.unexpandQ = function(q,e){ $scope.queryExpanded = false; q.expanded = false; e.stopPropagation(); };
@@ -83,7 +80,7 @@
   <div class="main" ng-controller="queriesController">    
     <div id='toolbar' ng-show=!queryExpanded>
       <input class="search-bar" type="text" ng-model="search" >
-      <button style='vertical-align: super; font-size: 20px' class="pure-button" ng-click=queries.unshift({name:'new'})> New </button>  
+      <button style='vertical-align: super; font-size: 20px' class="pure-button" ng-click=queries.unshift({})> New </button>  
       <button style='vertical-align: super; font-size: 20px' class="pure-button" ng-click=runAll()> Rerun All </button>  
     </div>
       <div>
