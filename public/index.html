@@ -72,7 +72,7 @@
       $scope.unexpandQ = function(q,e){ $scope.queryExpanded = false; q.expanded = false; e.stopPropagation(); };
       $scope.updateQ = function(q) { doPost('/queries/update/'+q._id, q, function(){ alert('updated'); })};
       $scope.createQ = function(q) { doPost('/queries/create',q, function(){ alert('created'); }); }
-      $scope.runAll = function() { doPost('/queries/runAll') }
+      $scope.runAll = function() { doPost('/queries/runAll',{},function(){ alert('Done! Refresh page to see results')}) }
     }); 
     
   </script>
