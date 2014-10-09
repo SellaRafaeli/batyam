@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler'
 require 'sinatra/namespace'
 require 'json' 
+require 'active_support'
 
 Bundler.require
 
@@ -9,8 +10,12 @@ Bundler.require
 require './middleware'
 require './ruby_awesomeness'
 require './db/mongo'
+require './db/mysql'
 require './users/user'
 require './users/users_api'
+require './queries/queries_api'
+require './queries/query'
+
 
 set :public_folder, File.dirname(__FILE__) + '/public'
 

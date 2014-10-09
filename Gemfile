@@ -9,3 +9,5 @@ gem 'colorize'
 gem 'mongo'
 gem 'bson_ext' #helps mongo performance
 gem 'rack-parser'
+gem 'activesupport'
+gem 'mysql2'

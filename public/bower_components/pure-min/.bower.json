@@ -1,0 +1,15 @@
+{
+  "name": "pure-min",
+  "_cacheHeaders": {
+    "ETag": "\"YM:1:6e044882-343a-4ebd-8b26-ca1cc886ad2a0004fa68584a248b\"",
+    "Last-Modified": "Tue, 27 May 2014 21:26:11 GMT",
+    "Content-Length": "18943",
+    "Content-Type": "text/css; charset=utf-8"
+  },
+  "_release": "e-tag:YM:1:6e04",
+  "main": "index.css",
+  "_source": "http://yui.yahooapis.com/pure/0.5.0/pure-min.css",
+  "_target": "*",
+  "_originalSource": "http://yui.yahooapis.com/pure/0.5.0/pure-min.css",
+  "_direct": true
+}

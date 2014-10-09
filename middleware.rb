@@ -8,10 +8,10 @@ use Rack::Parser, :content_types => {
   'application/json'  => Proc.new { |body| ::MultiJson.decode body }
 }
 
-before do		
-	set_current_user
-end
+# before do		
+# 	set_current_user
+# end
 
-def set_current_user
-	request.env['current_user'] = (token = request.cookies['user_token']) ? User.basic_data(token: token) : nil
-end
+# def set_current_user
+# 	request.env['current_user'] = (token = request.cookies['user_token']) ? User.basic_data(token: token) : nil
+# end

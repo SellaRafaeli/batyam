@@ -9,7 +9,7 @@ class Mongo::Collection
 	end
 
 	def add(doc)
-		doc[:_id] = nice_id
+		doc[:_id] = nice_id.to_s
 		self.insert(doc)
 	end
 
