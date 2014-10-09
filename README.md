@@ -1,6 +1,6 @@
 BATYAM is a simple, collaborative dashboard for business queries. 
 
-Batyam is an interface for business queries - creation, updating, and filtering of queries and results, as well as periodic execution in the background (TBD). To see results, execute the queries manually and refresh the page. 
+Batyam is an interface for business queries - creation, updating, and filtering of queries and results, as well as periodic execution in the background (TBD). 
 
 # Install
 
@@ -17,7 +17,11 @@ To run against a remote database (via ssh hop):
 
 # Use:
 
-# Support:
+# Upcoming:
+- Periodic execution in background of queries (without manual execution)
+- Periodic refreshing of data in client, to display live data always
+- Support queries on multiple databases
+
 Batyam currently supports only MySQL queries against a single DB. 
 
 # License:
