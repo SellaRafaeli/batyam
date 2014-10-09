@@ -8,7 +8,7 @@ BATYAM is a simple, collaborative dashboard for business queries.
 # Run:
 Against local database:
     
-    $ shotgun -d -p 9393; python -mwebbrowser http://localhost:9393/
+    $ shotgun -d -p 9393
 
 Against production database (via ssh hop):
     
