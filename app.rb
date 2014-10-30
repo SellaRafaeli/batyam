@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler'
 require 'sinatra/namespace'
+require 'sinatra/reloader' #dev-only
 require 'json' 
 require 'active_support'
 
