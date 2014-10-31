@@ -39,9 +39,9 @@ def make_fake_queries
 						"in last " +
 						["1 ", "5 ", "10 ", "24 "].sample + 
 						["minutes ", "hours ", "days "].sample,
-			query: "select * from MOCK_TABLE order by MODIFY_THIS_QUERY",			
+			#query: "select * from MOCK_TABLE order by MODIFY_THIS_QUERY",			
 			result: rand(100000),
-			time_ran: "2014-10-09T07:56:38.045Z"
+			#time_ran: "2014-10-09T07:56:38.045Z"
 		}
 	end
 

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <script src="bower_components/jquery/dist/jquery.min.js">console.log("yes");</script>  
+
+  <link rel="stylesheet" href="bower_components/pure-min/index.css">  <!-- http://purecss.io/buttons/ -->
+  <style>
+  body {
+      background-color: beige;
+      margin: 0;
+      padding: 0;
+  }
+  .main {
+    text-align: center;
+  }
+  
+  .search-bar { 
+    margin: 10px;
+    font-size: 40px;
+  }
+  .green { background-color: green;}
+  .blue { background-color: blue;}
+  .purple { background-color: violet;}
+  .white { background-color: white;}
+    .orange { background-color: orange;}
+      .pink { background-color: pink;}
+            .turqouise { background-color: teal;}
+
+  .result-box {
+      border: 1px solid black;
+      border-radius: 5px;
+      color: maroon;
+      margin: 10px;
+      padding: 10px;
+      display: inline-block;
+      text-align: center;
+      font-family: Copperplate, sans-serif;
+      min-width: 100px;
+      width: 200px;
+      text-decoration: none;
+  } 
+  .fullWidth {
+    width: 1000px;
+  }
+  .result-box:hover {    
+    border: 1px solid red;
+    cursor: pointer;    
+  }
+
+  .result-name {
+      font-size: 25px;       
+  }
+
+  .result-value {
+      font-size: 30px;
+      color: black;      
+  }
+
+  .field {
+    width: 700px;
+    margin: 10px;
+  }
+
+textarea {
+    width: 80%;
+    height: 150px;
+}
+
+.highlight {
+    color: #3366ff;
+}
+</style>
+<body>
+    <textarea id="textarea">Strings to search, one per line
+One
+Two
+Three
+Four
+Five
+Six
+Seven
+Eight
+Nine
+Ten
+
+</textarea>
+
+  <div class="main">    
+    <div id='toolbar' >
+      <input id="input" class="search-bar" type="text">
+      <button style='vertical-align: super; font-size: 20px' class="pure-button" ng-click=queries.unshift({})> New </button>  
+      <button style='vertical-align: super; font-size: 20px' class="pure-button" ng-click=runAll()> Rerun All </button>  
+
+<div>
+    Results:
+    <ul></ul>
+</div>
+    </div>
+    <script src="batyam.js"></script>
+     </body> 
+</html>

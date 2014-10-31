@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html ng-app="myApp">
   <script src="bower_components/angular/angular.min.js"></script>
   <link rel="stylesheet" href="bower_components/pure-min/index.css">  <!-- http://purecss.io/buttons/ -->
@@ -74,7 +74,9 @@
         });
       };         
 
-      $http.get('/queries/all').then(function(d){$scope.queries = d.data; 
+      $http.get('/queries/all').then(function(d){
+            $scope.queries = d.data; 
+            window.queries = d.data; 
         //console.log(d.data);
       })
       $scope.unexpandQ = function(q,e){ $scope.queryExpanded = false; q.expanded = false; e.stopPropagation(); };
@@ -128,4 +130,4 @@
         </a>        
       <div>  
   </div>
-</html>
+</html> -->
