@@ -68,6 +68,15 @@ textarea {
 .highlight {
     color: #3366ff;
 }
+
+.services li {
+    width: 150px;   
+}
+
+.services li.selected {
+    background-color: grey;   
+}
+
 </style>
 <body>
     <textarea id="textarea">Strings to search, one per line
@@ -92,7 +101,7 @@ Ten
 
 <div>
     Results:
-    <ul></ul>
+    <ul id="res" class="services"></ul>
 </div>
     </div>
     <script src="batyam.js"></script>

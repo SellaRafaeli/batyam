@@ -1,0 +1,133 @@
+<!-- <!doctype html>
+<html ng-app="myApp">
+  <script src="bower_components/angular/angular.min.js"></script>
+  <link rel="stylesheet" href="bower_components/pure-min/index.css">  <!-- http://purecss.io/buttons/ -->
+  <style>
+  body {
+      background-color: beige;
+      margin: 0;
+      padding: 0;
+  }
+  .main {
+    text-align: center;
+  }
+  
+  .search-bar { 
+    margin: 10px;
+    font-size: 40px;
+  }
+  .green { background-color: green;}
+  .blue { background-color: blue;}
+  .purple { background-color: violet;}
+  .white { background-color: white;}
+    .orange { background-color: orange;}
+      .pink { background-color: pink;}
+            .turqouise { background-color: teal;}
+
+  .result-box {
+      border: 1px solid black;
+      border-radius: 5px;
+      color: maroon;
+      margin: 10px;
+      padding: 10px;
+      display: inline-block;
+      text-align: center;
+      font-family: Copperplate, sans-serif;
+      min-width: 100px;
+      width: 200px;
+      text-decoration: none;
+  } 
+  .fullWidth {
+    width: 1000px;
+  }
+  .result-box:hover {    
+    border: 1px solid red;
+    cursor: pointer;    
+  }
+
+  .result-name {
+      font-size: 25px;       
+  }
+
+  .result-value {
+      font-size: 30px;
+      color: black;      
+  }
+
+  .field {
+    width: 700px;
+    margin: 10px;
+  }
+
+</style>
+
+  <script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+
+    myApp.controller('queriesController', function ($scope, $http) {          
+      http = $http;
+      
+      function doPost(route,payload,cb) { 
+        $http.post(route,payload).then(function(res){          
+          if (cb) { cb(res.data) } else { alert ('OK') }
+        }).catch(function(){alert('Failed');
+        });
+      };         
+
+      $http.get('/queries/all').then(function(d){
+            $scope.queries = d.data; 
+            window.queries = d.data; 
+        //console.log(d.data);
+      })
+      $scope.unexpandQ = function(q,e){ $scope.queryExpanded = false; q.expanded = false; e.stopPropagation(); };
+      $scope.updateQ = function(q) { doPost('/queries/update/'+q._id, q, function(){ alert('updated'); })};
+      $scope.createQ = function(q) { doPost('/queries/create',q, function(){ alert('created'); }); }
+      $scope.runAll = function() { doPost('/queries/runAll',{},function(){ location.reload(); }) }
+//'green': has(q, 'gigs'), 'blue': has(q, 'users'), 
+      $scope.has = function(q, what) { 
+        var name = q.name.toLowerCase();        
+        res = (name.indexOf(what) >= 0)        
+        return res
+      }
+    }); 
+    
+  </script>
+
+  <div class="main" ng-controller="queriesController">    
+    <div id='toolbar' ng-show=!queryExpanded>
+      <input class="search-bar" type="text" ng-model="search" >
+      <button style='vertical-align: super; font-size: 20px' class="pure-button" ng-click=queries.unshift({})> New </button>  
+      <button style='vertical-align: super; font-size: 20px' class="pure-button" ng-click=runAll()> Rerun All </button>  
+    </div>
+      <div>
+        <a ng-click="$parent.queryExpanded = true; q.expanded = true" href="#" ng-class="{'result-box': true, 
+        'green': has(q, 'gigs'), 'blue': has(q, 'users'), 
+        'pink': has(q, 'security'), 'orange': has(q, 'payments'), 
+        'turqouise': has(q, 'order'), 
+        'purple': has(q, 'recommendation'), 'white': has(q, 'purchases') }" ng-repeat="q in queries | filter: search " ng-show="q.expanded || !$parent.queryExpanded" ng-class="{fullWidth: q.expanded}">
+          <div class="result-name">{{q.name}}</div>        
+          <span class="result-value">{{q.result}}</span>                
+          <div ng-show="q.expanded">
+            <hr/>
+            <table>            
+            <tr>
+              <td>Name</td>
+              <td><input class='field' ng-model=q.name ng-show=q.expanded></input></td>              
+            </tr>
+            <tr>
+              <td>Query</td>
+              <td><input class='field' ng-model=q.query ng-show=q.expanded></input></td>
+            </tr>
+            <tr>
+              <td>Query Object Dump</td>
+              <td>{{q}}</td>
+            </tr>           
+            </table>                       
+            <br/>            
+            <button class="pure-button" ng-click="unexpandQ(q, $event)">Done</button>
+            <td><button class="pure-button" ng-click="q._id ? updateQ(q) : createQ(q)">{{q._id ? 'Update Changes' : 'Create'}}</button><td>
+          </div>          
+        </a>        
+      <div>  
+  </div>
+</html> -->
