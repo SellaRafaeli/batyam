@@ -129,10 +129,10 @@
     $.Autocomplete = Autocomplete;
 
     Autocomplete.formatResult = function (suggestion, currentValue) {
-        //sella - this is where to look in order to modify the value shown in the dropdown.
+        //sella (sella2) - this is where to look in order to modify the value shown in the dropdown.
 
         var res = isFuzzyMatch({value: suggestion.value}, currentValue.toLowerCase());
-        var res2= (res[0].highlighted);        
+        var res2= (res[0].highlighted) + " " + '('+ suggestion.data + ')';        
         return res2;
 
         //old
