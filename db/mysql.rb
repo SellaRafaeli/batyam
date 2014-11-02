@@ -38,7 +38,7 @@ class Mysql2::Client
 		unsafe_terms.include? q.downcase
 	end 
 
-	def doQuery(q)		
+	def doSingleValueQuery(q)		
 		#res = $mysql.query("select count(*) from users").entries[0].values[0] #hard-coded to single result
 		return "illegal" if self.unsafe?(q)
 		$mysql.query(q).entries[0].values[0] #hard-coded to single result		

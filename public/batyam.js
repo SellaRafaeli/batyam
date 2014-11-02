@@ -44,12 +44,23 @@ function highlight(string) {
 
 function submitNewQuery(form) {
     ajaxPost(form.serializeObject(), '/queries/create', function afterQueryCreated(res) {
-        form[0].reset();
+        form[0].reset();        
     });
+
+    return false; //prevent from refreshing the page
 }
 
+function log(a,b,c,d,e) { console.log(a,b,c,d,e); }
 
-
-function ajaxPost(data, route, cb) {
- //   $.post(route, function)
+function ajaxPost(data, route, successCB) {    
+    $.ajax({
+           type: "POST",
+           url: route,
+           data: data,
+           success: successCB,
+           error: function(data) {             
+               alert("Failure"); 
+               log(arguments[0].responseText, arguments);
+            }           
+     });
 }

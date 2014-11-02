@@ -27,9 +27,9 @@
       
       <div id='newQueryForm' class='hiddenzz'>
       <p> New Query </p>
-      <form onsubmit=submitNewQuery($(this))>
-          <input name='queryName' placeholder='queryName'>
-          <input name='queryText' placeholder='queryText'>
+      <form onsubmit='return submitNewQuery($(this))'>
+          <input name='name' placeholder='queryName'>
+          <textarea name='query' placeholder='queryText'></textarea>
           <input type="submit" value="submit">          
       </form>
       </div>

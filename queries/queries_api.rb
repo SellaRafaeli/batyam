@@ -13,7 +13,8 @@ namespace '/queries' do
 	end
 
 	post '/create' do
-		return {status: 401, msg: "missing params"}.to_json unless params[:query] && params[:name]
+		#return {status: 401, msg: "missing params"}.to_json unless params[:query] && params[:name]
+		halt 401, {msg: "missing params"}.to_json unless params[:query] && params[:name]
 		q_data = params.slice("name","query")
 		new_obj = $queries.add(q_data)
 		params.merge({status: 200, id: new_obj}).to_json
