@@ -16,7 +16,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 html { height: 101%; }
 body { 
-  background: #f0f0f0 url('images/bg.gif'); 
+  background: #f0f0f0; 
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #313131;
   font-size: 62.5%; 
@@ -27,7 +27,8 @@ body {
     color: #3366ff;
 }
 
-
+.hidden { display: none;}
+button { cursor: pointer;}
 ::selection { background: #a4dcec; }
 ::-moz-selection { background: #a4dcec; }
 ::-webkit-selection { background: #a4dcec; }

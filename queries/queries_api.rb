@@ -7,7 +7,9 @@ namespace '/queries' do
 	end
 
 	get '/details/:_id' do 
-		$queries.findOne(params[:_id])
+		#$queries.findOne(params[:_id])
+		id = params[:_id]
+		{result: 'result for '+id.to_s, text: 'foo bar'+id.to_s, id: id}.to_json
 	end
 
 	post '/create' do

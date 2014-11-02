@@ -1,3 +1,12 @@
+function loadResult(id) { 
+    $("#res").html("done");
+    $.get('/queries/details/'+id, function(res) {        
+        $("#res").html(res);
+    });
+    
+}
+
+
 $(function(){
   var currencies = [
       { value: 'Afghan afghani', data: 'AFN' },
@@ -801,7 +810,13 @@ $(function(){
   $('#autocomplete').autocomplete({
     lookup: currencies,
     onSelect: function (suggestion) {
+
       var thehtml = '<strong>Currency Name:</strong> ' + suggestion.value + ' <br> <strong>Symbol:</strong> ' + suggestion.data;
+    
+      var sn = suggestion;
+      id  = sn.data;
+      document.location.hash = id;  
+      loadResult(id);   
       $('#outputcontent').html(thehtml);
     }
   });
